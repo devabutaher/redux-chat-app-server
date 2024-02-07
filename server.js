@@ -24,6 +24,12 @@ router.render = (req, res) => {
     io.emit("conversation", {
       data: res.locals.data,
     });
+  } else if (path.includes("/messages") && method === "POST") {
+    console.log("emitted");
+    // emit socket event
+    io.emit("messages", {
+      data: res.locals.data,
+    });
   }
 
   res.json(res.locals.data);
